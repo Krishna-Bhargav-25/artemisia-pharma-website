@@ -6,7 +6,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "build": "node scripts/prerender.js"
   },
   "engines": {
     "node": ">=18"
@@ -16,5 +17,6 @@
   "dependencies": {
   },
   "devDependencies": {
+    "ejs": "^3.1.10"
   }
 }
