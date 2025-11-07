@@ -21,18 +21,11 @@ const FORM_ENDPOINT = process.env.FORM_ENDPOINT || '';
 const pages = [
   { view: 'index', out: 'index.html', data: { title: 'Artemisia Pharma' } },
   { view: 'about', out: 'about/index.html', data: { title: 'About Us - Artemisia Pharma' } },
-  {
-    view: 'portfolio',
-    out: 'portfolio/index.html',
-    data: {
-      title: 'Portfolio - Artemisia Pharma',
-      products: [
-        { name: 'Paracetamol', concentration: '500 mg' },
-        { name: 'Ibuprofen', concentration: '200 mg' },
-        { name: 'Amoxicillin', concentration: '250 mg' },
-      ],
-    },
-  },
+  { view: 'products/index', out: 'products/index.html', data: { title: 'Products - Artemisia Pharma' } },
+  { view: 'products/ir-pellets', out: 'products/ir-pellets/index.html', data: { title: 'IR Pellets - Artemisia Pharma' } },
+  { view: 'products/sr-cr-pr-pellets', out: 'products/sr-cr-pr-pellets/index.html', data: { title: 'SR/CR/PR Pellets - Artemisia Pharma' } },
+  { view: 'products/dr-ec-pellets', out: 'products/dr-ec-pellets/index.html', data: { title: 'DR/EC Pellets - Artemisia Pharma' } },
+  { view: 'products/granules', out: 'products/granules/index.html', data: { title: 'Granules - Artemisia Pharma' } },
   { view: 'contact', out: 'contact/index.html', data: { title: 'Contact Us - Artemisia Pharma', sent: null, error: null } },
 ];
 
@@ -44,9 +37,14 @@ function rewriteForPages(html) {
     .replace(/src="\/logo\.(png|jpg|jpeg|svg)"/g, `src="${basePath}/logo.$1"`)
     // nav + root links
     .replace(/href="\/"/g, `href="${basePath}/"`)
-    .replace(/href="\/about"/g, `href="${basePath}/about/"`)
-    .replace(/href="\/portfolio"/g, `href="${basePath}/portfolio/"`)
-    .replace(/href="\/contact"/g, `href="${basePath}/contact/"`);
+.replace(/href=\"\\/about\"/g, `href=\"${basePath}/about/\"`)
+    .replace(/href=\"\\/portfolio\"/g, `href=\"${basePath}/products/\"`)
+    .replace(/href=\"\\/products\"/g, `href=\"${basePath}/products/\"`)
+    .replace(/href=\"\\/products\\/ir-pellets\"/g, `href=\"${basePath}/products/ir-pellets/\"`)
+    .replace(/href=\"\\/products\\/sr-cr-pr-pellets\"/g, `href=\"${basePath}/products/sr-cr-pr-pellets/\"`)
+    .replace(/href=\"\\/products\\/dr-ec-pellets\"/g, `href=\"${basePath}/products/dr-ec-pellets/\"`)
+    .replace(/href=\"\\/products\\/granules\"/g, `href=\"${basePath}/products/granules/\"`)
+    .replace(/href=\"\\/contact\"/g, `href=\"${basePath}/contact/\"`);
 
   // Contact form wiring: if no external endpoint, disable the form gracefully
   if (FORM_ENDPOINT) {

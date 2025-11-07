@@ -23,14 +23,20 @@ app.get('/about', (req, res) => {
   res.render('about', { title: 'About Us - Artemisia Pharma' });
 });
 
-app.get('/portfolio', (req, res) => {
-  // Example products; replace with real data later
-  const products = [
-    { name: 'Paracetamol', concentration: '500 mg' },
-    { name: 'Ibuprofen', concentration: '200 mg' },
-    { name: 'Amoxicillin', concentration: '250 mg' },
-  ];
-  res.render('portfolio', { title: 'Portfolio - Artemisia Pharma', products });
+app.get('/products', (req, res) => {
+  res.render('products/index', { title: 'Products - Artemisia Pharma' });
+});
+app.get('/products/ir-pellets', (req, res) => {
+  res.render('products/ir-pellets', { title: 'IR Pellets - Artemisia Pharma' });
+});
+app.get('/products/sr-cr-pr-pellets', (req, res) => {
+  res.render('products/sr-cr-pr-pellets', { title: 'SR/CR/PR Pellets - Artemisia Pharma' });
+});
+app.get('/products/dr-ec-pellets', (req, res) => {
+  res.render('products/dr-ec-pellets', { title: 'DR/EC Pellets - Artemisia Pharma' });
+});
+app.get('/products/granules', (req, res) => {
+  res.render('products/granules', { title: 'Granules - Artemisia Pharma' });
 });
 
 app.get('/contact', (req, res) => {
