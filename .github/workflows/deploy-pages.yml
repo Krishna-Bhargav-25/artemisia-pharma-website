@@ -21,6 +21,10 @@ jobs:
       - run: npm run build
         env:
           FORM_ENDPOINT: ${{ secrets.FORM_ENDPOINT }}
+      - name: List built files
+        run: |
+          echo "DIST TREE (first 200):"
+          find dist -type f | sort | head -n 200
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
