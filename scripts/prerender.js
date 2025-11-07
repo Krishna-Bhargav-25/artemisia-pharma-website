@@ -83,7 +83,8 @@ async function copyDir(src, dest) {
     const outPath = path.join(distDir, p.out);
     await fsp.mkdir(path.dirname(outPath), { recursive: true });
     const file = path.join(viewsDir, `${p.view}.ejs`);
-    const html = await ejs.renderFile(file, p.data, { async: true });
+    // Render synchronously to support classic EJS includes without `await`
+    const html = await ejs.renderFile(file, p.data);
     const rewritten = rewriteForPages(html);
     await fsp.writeFile(outPath, rewritten, 'utf8');
   }
