@@ -1,0 +1,18 @@
+<%- include('partials/header', { title }) %>
+<section class="reveal">
+  <h1>Product Portfolio</h1>
+  <table class="table">
+    <thead>
+      <tr><th>Product</th><th>Concentration</th></tr>
+    </thead>
+    <tbody>
+      <% products.forEach(p => { %>
+        <tr>
+          <td><%= p.name %></td>
+          <td><%= p.concentration %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</section>
+<%- include('partials/footer') %>
