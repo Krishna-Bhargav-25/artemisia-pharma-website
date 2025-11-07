@@ -33,7 +33,7 @@
     document.body.classList.add('page-fade-out');
     setTimeout(()=>{ window.location.href = a.href; }, 350);
   });
-  // Background ASMR canvas animation
+  // Background ASMR canvas animation (refined capsules + swirling pellets)
   (function(){
     const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const canvas = document.getElementById('bg-asmr-canvas');
@@ -51,44 +51,54 @@
     resize();
     window.addEventListener('resize', ()=>{ dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1)); resize(); });
 
-    // Entities
+    // Helpers
     const rng = (min, max)=> min + Math.random()*(max-min);
+    const clamp = (v, a, b)=> Math.max(a, Math.min(b, v));
+    const now = ()=> performance.now();
+    function getVar(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || '#fff'; }
+    const COL_CAP_A = getVar('--Animation-Capsule-Primary');
+    const COL_CAP_B = getVar('--Animation-Capsule-Secondary');
+    const COL_ACC = getVar('--Animation-Pellet-Accent');
+    const COL_SUB = getVar('--Animation-Pellet-Subtle');
+
+    // Entities
     const capsules = [];
     const particles = [];
+    const sparkles = [];
 
-    const CAPSULE_COUNT = 10; // low density for performance
-    const PARTICLE_COUNT = 60;
+    const CAPSULE_COUNT = 12; // low density
+    const PARTICLE_COUNT = 80; // still light
 
+    // Capsules: very slow vertical drift, almost no horizontal
     for (let i=0;i<CAPSULE_COUNT;i++){
+      const depth = rng(0.2, 1);
       capsules.push({
         x: rng(0, w), y: rng(0, h),
-        vx: rng(-0.02, 0.02), vy: rng(-0.06, -0.02),
-        len: rng(80, 180)*dpr, rad: rng(14, 28)*dpr,
-        rot: rng(0, Math.PI), vrot: rng(-0.0002, 0.0002),
-        col: Math.random() < 0.5 ? getVar('--Animation-Capsule-Primary') : getVar('--Animation-Capsule-Secondary'),
-        alpha: rng(0.2, 0.45), depth: rng(0.3, 1)
-      });
-    }
-    for (let i=0;i<PARTICLE_COUNT;i++){
-      particles.push({
-        x: rng(0, w), y: rng(0, h),
-        vx: rng(-0.04, 0.04), vy: rng(-0.05, -0.01),
-        r: rng(2*dpr, 4*dpr),
-        col: Math.random() < 0.4 ? getVar('--Animation-Pellet-Accent') : getVar('--Animation-Pellet-Subtle'),
-        alpha: rng(0.15, 0.35), depth: rng(0.1, 1)
+        vx: rng(-0.005, 0.005), vy: rng(-0.025, -0.006),
+        len: rng(90, 220)*dpr, rad: rng(14, 28)*dpr,
+        rot: rng(0, Math.PI), vrot: rng(-0.00015, 0.00015),
+        col: Math.random() < 0.5 ? COL_CAP_A : COL_CAP_B,
+        alpha: rng(0.2, 0.45), depth
       });
     }
 
-    function getVar(name){
-      return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || '#fff';
+    // Pellets: small glowing orbs with more dynamic movement
+    for (let i=0;i<PARTICLE_COUNT;i++){
+      const depth = rng(0.1, 1);
+      particles.push({
+        x: rng(0, w), y: rng(0, h),
+        vx: rng(-0.03, 0.03), vy: rng(-0.06, -0.01),
+        r: rng(1.8*dpr, 3.8*dpr),
+        col: Math.random() < 0.45 ? COL_ACC : COL_SUB,
+        alpha: rng(0.12, 0.35), depth
+      });
     }
 
     // Interaction state
     let scrollYPrev = window.scrollY, scrollInfluence = 0;
     window.addEventListener('scroll', ()=>{
       const dy = window.scrollY - scrollYPrev; scrollYPrev = window.scrollY;
-      // small, eased influence (cap magnitude)
-      scrollInfluence = Math.max(-1, Math.min(1, dy * 0.02));
+      scrollInfluence = clamp(dy * 0.02, -1, 1);
     }, { passive: true });
 
     let mouse = { x: w/2, y: h/2, active: false };
@@ -97,74 +107,128 @@
       mouse.x = (e.clientX - rect.left) * dpr;
       mouse.y = (e.clientY - rect.top) * dpr;
       mouse.active = true;
+      // spawn a faint sparkle
+      sparkles.push({ x: mouse.x, y: mouse.y, r: rng(2*dpr, 4*dpr), a: 0.22, t: now(), life: 650 });
+      if (sparkles.length > 24) sparkles.shift();
     }, { passive: true });
+
+    function edgeFade(y){
+      const m = 0.18 * h; // fade near top/bottom edges
+      const f = y < m ? y/m : (y > h - m ? (h - y)/m : 1);
+      return clamp(f, 0, 1);
+    }
 
     function step(){
       ctx.clearRect(0,0,w,h);
 
-      // slight global opacity modulation with scroll
-      const globalAlpha = 0.85 + Math.max(-0.05, Math.min(0.1, scrollInfluence*0.02));
-      ctx.globalAlpha = globalAlpha;
+      // subtle overall opacity modulation with scroll
+      const gA = 0.88 + clamp(scrollInfluence*0.03, -0.05, 0.1);
+      ctx.globalAlpha = gA;
 
-      // Draw capsules (foreground-ish by depth)
+      // Capsules: ultra-slow vertical drift + tiny sine horizontal drift
+      const t = now();
       for (const c of capsules){
-        const slow = (1 - c.depth) * 0.4; // deeper ones move less
-        const sInflu = (c.depth > 0.6 ? -0.4 : 0.2) * scrollInfluence; // FG slow, BG slightly faster
-        c.x += (c.vx + sInflu*0.02);
-        c.y += (c.vy * (1+slow) + sInflu*0.3);
+        // Depth-based scroll response: FG slows slightly, BG speeds slightly
+        const s = Math.abs(scrollInfluence);
+        const fg = c.depth > 0.6; const bg = c.depth < 0.4;
+        const vyScale = fg ? (1 - 0.18*s) : (bg ? (1 + 0.18*s) : 1);
+
+        // motion
+        const driftX = Math.sin((t*0.00012) + c.y*0.0003) * 0.4*dpr; // minimal horizontal
+        c.x += (c.vx + driftX*0.02);
+        c.y += (c.vy * vyScale);
         c.rot += c.vrot;
 
-        // gentle sine drift
-        const driftX = Math.sin((Date.now()*0.0002) + c.x*0.0005)*0.3*dpr;
-        const driftY = Math.cos((Date.now()*0.00015) + c.y*0.0004)*0.2*dpr;
+        // gentle mouse influence
+        if (mouse.active){
+          const dx = mouse.x - c.x, dy = mouse.y - c.y; const d2 = dx*dx + dy*dy; const r = 260*dpr;
+          if (d2 < r*r){
+            const d = Math.sqrt(d2)||1; const ux = dx/d, uy = dy/d;
+            c.x += ux * 0.02; c.y += uy * 0.02; // extremely subtle
+          }
+        }
 
-        // wrap
-        if (c.x < -c.len) c.x = w + c.len;
-        if (c.x > w + c.len) c.x = -c.len;
+        // wrap vertically
         if (c.y < -c.len) c.y = h + c.len;
         if (c.y > h + c.len) c.y = -c.len;
+        if (c.x < -c.len) c.x = w + c.len;
+        if (c.x > w + c.len) c.x = -c.len;
 
         ctx.save();
-        ctx.translate(c.x + driftX, c.y + driftY);
+        ctx.translate(c.x, c.y);
         ctx.rotate(c.rot);
-        ctx.globalAlpha = c.alpha * globalAlpha;
+        ctx.globalAlpha = c.alpha * edgeFade(c.y) * gA;
         drawCapsule(ctx, 0, 0, c.len, c.rad, c.col);
         ctx.restore();
       }
 
-      // Draw particles with subtle attraction
+      // Pellets: swirl around nearest capsule with slight attraction
       for (const p of particles){
-        const slow = (1 - p.depth) * 0.3;
-        const sInflu = (p.depth > 0.6 ? -0.3 : 0.2) * scrollInfluence;
-        // gentle attraction to mouse
+        // Find nearest capsule (capsule count is small)
+        let nearest = null, bestD2 = Infinity;
+        for (const c of capsules){
+          const dx = p.x - c.x, dy = p.y - c.y; const d2 = dx*dx + dy*dy;
+          if (d2 < bestD2){ bestD2 = d2; nearest = c; }
+        }
+        const s = Math.abs(scrollInfluence);
+        const fg = p.depth > 0.6; const bg = p.depth < 0.4;
+        const vyScale = fg ? (1 - 0.15*s) : (bg ? (1 + 0.15*s) : 1);
+
+        if (nearest){
+          const dx = nearest.x - p.x, dy = nearest.y - p.y; const d = Math.sqrt(dx*dx + dy*dy)||1;
+          const ux = dx/d, uy = dy/d;
+          // tangential swirl vector
+          const tx = -uy, ty = ux;
+          // mix swirl + slight attraction
+          p.vx += tx * 0.006 + ux * 0.002;
+          p.vy += ty * 0.006 + uy * 0.002;
+        }
+
+        // subtle mouse attraction
         if (mouse.active){
-          const dx = mouse.x - p.x, dy = mouse.y - p.y; const d2 = dx*dx + dy*dy;
-          const r = 160*dpr; if (d2 < r*r){
+          const dx = mouse.x - p.x, dy = mouse.y - p.y; const d2 = dx*dx + dy*dy; const r = 180*dpr;
+          if (d2 < r*r){
             const d = Math.sqrt(d2)||1; const ux = dx/d, uy = dy/d;
-            p.vx += ux * 0.002; p.vy += uy * 0.002; // tiny impulse
+            p.vx += ux * 0.003; p.vy += uy * 0.003;
           }
         }
-        p.x += (p.vx + sInflu*0.02);
-        p.y += (p.vy * (1+slow) + sInflu*0.25);
-        // wrap
+
+        // integrate and wrap
+        p.x += (p.vx);
+        p.y += (p.vy * vyScale);
+        p.vx *= 0.985; p.vy *= 0.985; // damping for smoothness
         if (p.x < -10*dpr) p.x = w + 10*dpr;
         if (p.x > w + 10*dpr) p.x = -10*dpr;
         if (p.y < -10*dpr) p.y = h + 10*dpr;
         if (p.y > h + 10*dpr) p.y = -10*dpr;
 
         ctx.save();
-        ctx.globalAlpha = p.alpha * globalAlpha;
-        // soft glow
-        ctx.shadowColor = p.col; ctx.shadowBlur = 6*dpr;
+        ctx.globalAlpha = p.alpha * gA;
+        ctx.shadowColor = p.col; ctx.shadowBlur = 8*dpr;
         ctx.fillStyle = p.col;
         ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fill();
         ctx.shadowBlur = 0;
         ctx.restore();
       }
 
+      // Sparkles near pointer (brief bloom)
+      const tNow = now();
+      for (let i = sparkles.length - 1; i >= 0; i--){
+        const sObj = sparkles[i];
+        const age = tNow - sObj.t; if (age > sObj.life){ sparkles.splice(i,1); continue; }
+        const k = 1 - (age / sObj.life);
+        ctx.save();
+        ctx.globalAlpha = sObj.a * k * 0.8;
+        ctx.shadowColor = COL_ACC; ctx.shadowBlur = 12*dpr;
+        ctx.fillStyle = COL_ACC;
+        ctx.beginPath(); ctx.arc(sObj.x, sObj.y, sObj.r * (1.2 - 0.2*k), 0, Math.PI*2); ctx.fill();
+        ctx.shadowBlur = 0; ctx.restore();
+      }
+
       requestAnimationFrame(step);
     }
 
+    // Stylized elongated capsule (rounded ends)
     function drawCapsule(ctx, x, y, len, rad, color){
       ctx.fillStyle = color;
       ctx.beginPath();
