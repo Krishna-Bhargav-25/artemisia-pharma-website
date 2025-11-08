@@ -35,6 +35,9 @@ app.get('/products/sr-cr-pr-pellets', (req, res) => {
 app.get('/products/dr-ec-pellets', (req, res) => {
 res.render('products/dr-ec-pellets', { title: 'EC/DR Pellets - Artemisia Pharma' });
 });
+app.get('/products/inert-core-pellets', (req, res) => {
+  res.render('products/inert-core-pellets', { title: 'Inert Core Pellets - Artemisia Pharma' });
+});
 app.get('/products/granules', (req, res) => {
   res.render('products/granules', { title: 'Granules - Artemisia Pharma' });
 });

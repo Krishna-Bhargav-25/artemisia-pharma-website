@@ -27,6 +27,7 @@ const pages = [
   { view: 'products/sr-cr-pr-pellets', out: 'products/sr-cr-pr-pellets/index.html', data: { title: 'SR/CR/PR Pellets - Artemisia Pharma' } },
 { view: 'products/dr-ec-pellets', out: 'products/dr-ec-pellets/index.html', data: { title: 'EC/DR Pellets - Artemisia Pharma' } },
   { view: 'products/granules', out: 'products/granules/index.html', data: { title: 'Granules - Artemisia Pharma' } },
+  { view: 'products/inert-core-pellets', out: 'products/inert-core-pellets/index.html', data: { title: 'Inert Core Pellets - Artemisia Pharma' } },
   { view: 'contact', out: 'contact/index.html', data: { title: 'Contact Us - Artemisia Pharma', sent: null, error: null } },
 ];
 
@@ -44,8 +45,9 @@ function rewriteForPages(html) {
     .replace(/href="\/products\/ir-pellets"/g, `href="${basePath}/products/ir-pellets/"`)
     .replace(/href="\/products\/sr-cr-pr-pellets"/g, `href="${basePath}/products/sr-cr-pr-pellets/"`)
     .replace(/href="\/products\/dr-ec-pellets"/g, `href="${basePath}/products/dr-ec-pellets/"`)
-    .replace(/href="\/products\/granules"/g, `href="${basePath}/products/granules/"`)
-    .replace(/href="\/contact"/g, `href="${basePath}/contact/"`);
+.replace(/href=\"\\/products\\/granules\"/g, `href=\"${basePath}/products/granules/\"`)
+    .replace(/href=\"\\/products\\/inert-core-pellets\"/g, `href=\"${basePath}/products/inert-core-pellets/\"`)
+    .replace(/href=\"\\/contact\"/g, `href=\"${basePath}/contact/\"`);
 
   // Contact form wiring: if no external endpoint, disable the form gracefully
   if (FORM_ENDPOINT) {
