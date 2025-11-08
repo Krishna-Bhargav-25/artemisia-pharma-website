@@ -74,11 +74,11 @@
       const depth = rng(0.2, 1);
       capsules.push({
         x: rng(0, w), y: rng(0, h),
-        vx: rng(-0.005, 0.005), vy: rng(-0.025, -0.006),
-        len: rng(90, 220)*dpr, rad: rng(14, 28)*dpr,
-        rot: rng(0, Math.PI), vrot: rng(-0.00015, 0.00015),
+        vx: rng(-0.004, 0.004), vy: rng(-0.022, -0.006),
+        len: rng(140, 260)*dpr, rad: rng(12, 20)*dpr,
+        rot: rng(0, Math.PI), vrot: rng(-0.00012, 0.00012),
         col: Math.random() < 0.5 ? COL_CAP_A : COL_CAP_B,
-        alpha: rng(0.2, 0.45), depth
+        alpha: rng(0.22, 0.5), depth
       });
     }
 
