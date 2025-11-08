@@ -73,8 +73,8 @@
     const particles = [];
     const sparkles = [];
 
-    const CAPSULE_COUNT = 12; // low density
-    const PARTICLE_COUNT = 80; // still light
+    const CAPSULE_COUNT = 15; // low density
+    const PARTICLE_COUNT = 100; // still light
 
     // Capsules: very slow vertical drift, almost no horizontal
     for (let i=0;i<CAPSULE_COUNT;i++){
