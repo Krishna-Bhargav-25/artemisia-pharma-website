@@ -17,6 +17,7 @@ const publicDir = path.join(root, 'public');
 // Base path for Project Pages: https://<user>.github.io/<repo>/
 const basePath = '/artemisia-pharma-website';
 const FORM_ENDPOINT = process.env.FORM_ENDPOINT || '';
+const VERSION = process.env.BUILD_VERSION || String(Date.now());
 
 const pages = [
   { view: 'index', out: 'index.html', data: { title: 'Artemisia Pharma' } },
@@ -32,9 +33,9 @@ const pages = [
 function rewriteForPages(html) {
   let out = html
     // assets
-    .replace(/href="\/styles\.css"/g, `href="${basePath}/styles.css"`)
-    .replace(/src="\/app\.js"/g, `src="${basePath}/app.js"`)
-    .replace(/src="\/logo\.(png|jpg|jpeg|svg)"/g, `src="${basePath}/logo.$1"`)
+.replace(/href="\/styles\.css"/g, `href="${basePath}/styles.css?v=${VERSION}"`)
+    .replace(/src="\/app\.js"/g, `src="${basePath}/app.js?v=${VERSION}"`)
+    .replace(/src="\/logo\.(png|jpg|jpeg|svg)"/g, `src="${basePath}/logo.$1?v=${VERSION}"`)
     // nav + root links
     .replace(/href="\/"/g, `href="${basePath}/"`)
     .replace(/href="\/about"/g, `href="${basePath}/about/"`)

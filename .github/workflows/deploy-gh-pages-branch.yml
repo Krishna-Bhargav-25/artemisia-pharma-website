@@ -19,6 +19,7 @@ jobs:
       - run: npm run build
         env:
           FORM_ENDPOINT: ${{ secrets.FORM_ENDPOINT }}
+          BUILD_VERSION: ${{ github.sha }}
       - name: List built files
         run: |
           echo "DIST TREE (first 200):"

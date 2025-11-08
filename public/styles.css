@@ -47,6 +47,7 @@ section h1{margin-top:0;font-size:28px}
 .table th,.table td{border:1px solid var(--border);padding:10px 12px;text-align:left;color:var(--Text-Body);background:rgba(255,255,255,.96)}
 
 /* About page typography */
+.about{background:rgba(255,255,255,.94);color:var(--Text-Body);padding:20px;border-radius:12px;box-shadow:var(--shadow)}
 .about h1{color:var(--Primary-Brand);font-size:32px}
 .about h2{color:var(--Primary-Brand);font-size:22px;margin-top:24px}
 .about .lead{color:var(--Text-Body);font-size:18px;max-width:820px}
