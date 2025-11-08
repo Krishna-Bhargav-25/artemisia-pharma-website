@@ -16,8 +16,8 @@ header{position:sticky;top:0;background:linear-gradient(180deg, #ffffffee, #ffff
 nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
 .brand{display:flex;align-items:center;gap:12px;font-weight:800;color:var(--brand-blue)}
 .brand-name{font-weight:800;letter-spacing:.2px;color:var(--Primary-Brand);font-size:22px;line-height:1}
-.brand img{height:96px;max-height:96px;width:auto;display:block;filter: drop-shadow(0 1px 1.5px rgba(0,0,0,.12));transition:transform .2s var(--ease-standard), filter .2s var(--ease-standard)}
-@media (max-width: 520px){ .brand img{height:72px;max-height:72px} }
+.brand img{height:79.68px;max-height:79.68px;width:auto;display:block;filter: drop-shadow(0 1px 1.5px rgba(0,0,0,.12));transition:transform .2s var(--ease-standard), filter .2s var(--ease-standard)}
+@media (max-width: 520px){ .brand img{height:59.76px;max-height:59.76px} }
 .brand:hover img{transform:translateY(-2px);filter:drop-shadow(0 3px 10px rgba(27,74,142,.25))}
 nav ul{list-style:none;display:flex;gap:18px;margin:0;padding:0}
 nav a{position:relative;padding:6px 2px;color:#0f172a;transition:color .2s var(--ease-standard)}
