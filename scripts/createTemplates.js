@@ -13,82 +13,72 @@ if (!fs.existsSync(dataDir)) {
 const sampleProducts = {
   'IR Pellets': [
     {
-      'Product Name': 'Omeprazole IR Pellets',
-      'Strength': '20mg',
-      'Description': 'Immediate release pellets for acid reduction',
-      'Mesh Size': '16-20',
-      'Status': 'Available'
+      'PRODUCT': 'Omeprazole IR Pellets',
+      'STRENGTH/CONCENTRATION': '20mg'
     },
     {
-      'Product Name': 'Esomeprazole IR Pellets',
-      'Strength': '40mg',
-      'Description': 'Immediate release pellets for GERD treatment',
-      'Mesh Size': '18-25',
-      'Status': 'Available'
+      'PRODUCT': 'Esomeprazole IR Pellets',
+      'STRENGTH/CONCENTRATION': '40mg'
+    },
+    {
+      'PRODUCT': 'Pantoprazole IR Pellets',
+      'STRENGTH/CONCENTRATION': '20mg'
     }
   ],
   'SR,CR,PR Pellets': [
     {
-      'Product Name': 'Tramadol SR Pellets',
-      'Strength': '100mg',
-      'Description': 'Sustained release pellets for pain management',
-      'Release Profile': '12 hours',
-      'Status': 'Available'
+      'PRODUCT': 'Tramadol SR Pellets',
+      'STRENGTH/CONCENTRATION': '100mg'
     },
     {
-      'Product Name': 'Metformin CR Pellets',
-      'Strength': '500mg',
-      'Description': 'Controlled release pellets for diabetes',
-      'Release Profile': '24 hours',
-      'Status': 'Available'
+      'PRODUCT': 'Metformin CR Pellets',
+      'STRENGTH/CONCENTRATION': '500mg'
+    },
+    {
+      'PRODUCT': 'Venlafaxine XR Pellets',
+      'STRENGTH/CONCENTRATION': '75mg'
     }
   ],
   'EC,DR Pellets': [
     {
-      'Product Name': 'Omeprazole EC Pellets',
-      'Strength': '20mg',
-      'Description': 'Enteric coated pellets for gastric protection',
-      'Coating Type': 'Eudragit L30D-55',
-      'Status': 'Available'
+      'PRODUCT': 'Omeprazole EC Pellets',
+      'STRENGTH/CONCENTRATION': '20mg'
     },
     {
-      'Product Name': 'Pantoprazole DR Pellets',
-      'Strength': '40mg',
-      'Description': 'Delayed release pellets for acid suppression',
-      'Coating Type': 'Eudragit L100-55',
-      'Status': 'Available'
+      'PRODUCT': 'Pantoprazole DR Pellets',
+      'STRENGTH/CONCENTRATION': '40mg'
+    },
+    {
+      'PRODUCT': 'Esomeprazole DR Pellets',
+      'STRENGTH/CONCENTRATION': '20mg'
     }
   ],
   'Granules': [
     {
-      'Product Name': 'Paracetamol Granules',
-      'Strength': '500mg',
-      'Description': 'High-quality granules for analgesic formulations',
-      'Particle Size': '200-400 microns',
-      'Status': 'Available'
+      'PRODUCT': 'Paracetamol Granules',
+      'STRENGTH/CONCENTRATION': '500mg'
     },
     {
-      'Product Name': 'Ibuprofen Granules',
-      'Strength': '200mg',
-      'Description': 'Anti-inflammatory granules',
-      'Particle Size': '250-500 microns',
-      'Status': 'Available'
+      'PRODUCT': 'Ibuprofen Granules',
+      'STRENGTH/CONCENTRATION': '200mg'
+    },
+    {
+      'PRODUCT': 'Caffeine Granules',
+      'STRENGTH/CONCENTRATION': '50mg'
     }
   ],
   'Inert Core Pellets': [
     {
-      'Product Name': 'Sugar Spheres NF',
-      'Size Range': '16-20 mesh',
-      'Description': 'High-quality sugar spheres for coating',
-      'Composition': 'Sucrose & Starch',
-      'Status': 'Available'
+      'PRODUCT': 'Sugar Spheres NF (16-20 mesh)'
     },
     {
-      'Product Name': 'Microcrystalline Cellulose Spheres',
-      'Size Range': '18-25 mesh',
-      'Description': 'MCC pellets for drug layering',
-      'Composition': '100% MCC',
-      'Status': 'Available'
+      'PRODUCT': 'Sugar Spheres NF (18-25 mesh)'
+    },
+    {
+      'PRODUCT': 'Microcrystalline Cellulose Spheres (20-35 mesh)'
+    },
+    {
+      'PRODUCT': 'Tartaric Acid Pellets (14-18 mesh)'
     }
   ]
 };
