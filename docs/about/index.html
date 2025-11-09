@@ -4,22 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Us - Artemisia Pharma</title>
-  <link rel="stylesheet" href="/artemisia-pharma-website/styles.css?v=b93a4e0fdc16956017447626f3ca872b3334bee7" />
+  <link rel="stylesheet" href="/artemisia-pharma-website/styles.css?v=0e4dee1243e62dce10646309ff060063fb7a480d" />
 </head>
 <body>
   <div id="bg-asmr" aria-hidden="true"><canvas id="bg-asmr-canvas"></canvas></div>
+
   <header>
     <nav class="container">
       <a class="brand" href="/artemisia-pharma-website/">
-        <img src="/artemisia-pharma-website/logo.svg?v=b93a4e0fdc16956017447626f3ca872b3334bee7" alt="Artemisia Pharma logo" />
+        <img src="/artemisia-pharma-website/logo.svg?v=0e4dee1243e62dce10646309ff060063fb7a480d" alt="Artemisia Pharma logo" class="logo" />
       </a>
-      <ul>
+
+      <!-- Hamburger Menu (visible only on mobile) -->
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links">
         <li><a href="/artemisia-pharma-website/about/">About</a></li>
         <li><a href="/artemisia-pharma-website/products/">Products</a></li>
         <li><a href="/artemisia-pharma-website/contact/">Contact</a></li>
       </ul>
     </nav>
   </header>
+
   <main id="page" class="container">
 
 <section class="about reveal">
@@ -92,7 +102,7 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
-<script src="/artemisia-pharma-website/app.js?v=b93a4e0fdc16956017447626f3ca872b3334bee7" defer></script>
+<script src="/artemisia-pharma-website/app.js?v=0e4dee1243e62dce10646309ff060063fb7a480d" defer></script>
 </body>
 </html>
 
