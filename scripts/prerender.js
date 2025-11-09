@@ -92,7 +92,8 @@ async function copyDir(src, dest) {
     // Render synchronously to support classic EJS includes without `await`
     const html = await ejs.renderFile(file, p.data, {
       views: viewsDir,
-      filename: file, // ensures includes resolve from /views
+      filename: file,
+      views: [viewsDir], // ensures includes resolve from /views
       });
     const rewritten = rewriteForPages(html);
     await fsp.writeFile(outPath, rewritten, 'utf8');
