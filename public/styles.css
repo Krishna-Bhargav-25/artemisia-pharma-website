@@ -292,6 +292,68 @@ header .logo {
     gap: 1rem;
     display: none;
   }
+/* ========== Footer Email Section ========== */
+
+/* Common footer style adjustments */
+footer {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  background: linear-gradient(to right, #005b4f, #2b8a6e); /* same gradient */
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Email bar container */
+.footer-email {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* allow text wrapping for smaller screens */
+  gap: 0.5rem;
+  background: linear-gradient(to right, #005b4f, #2b8a6e);
+  color: white;
+  font-weight: 500;
+  padding: 1rem 0.8rem;
+  font-size: 1.1rem; /* base size for desktop */
+}
+
+/* Email label and link */
+.footer-email strong {
+  margin-right: 0.3rem;
+  font-size: 1.05em;
+}
+
+.footer-email a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  word-break: break-all; /* prevents overflow on small screens */
+}
+
+/* ========== Responsive adjustments ========== */
+
+/* Tablets and small devices */
+@media (max-width: 768px) {
+  .footer-email {
+    flex-direction: column;
+    text-align: center;
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+}
+
+/* Small mobile phones (under ~480px) */
+@media (max-width: 480px) {
+  .footer-email {
+    font-size: 3.5vw; /* scales dynamically with viewport width */
+    padding: 0.7rem;
+    line-height: 1.4;
+  }
+  .footer-email strong {
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+}
 
   .nav-links.open {
     display: flex;
