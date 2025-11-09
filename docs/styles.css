@@ -252,46 +252,99 @@ header .logo {
   color: #007bff;
 }
 
-/* ---------- HAMBURGER BUTTON ---------- */
+/* ---------- HAMBURGER BUTTON (Smooth ASMR Motion) ---------- */
 .menu-toggle {
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 24px;
-  height: 18px;
+  width: 26px;
+  height: 20px;
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
+  transition: transform 0.3s var(--ease-standard);
+}
+
+.menu-toggle:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 4px rgba(74, 139, 91, 0.3));
 }
 
 .menu-toggle span {
   display: block;
   height: 3px;
   width: 100%;
-  background-color: #003366;
-  border-radius: 3px;
+  background: linear-gradient(90deg, var(--Primary-Brand), var(--Secondary-Brand));
+  border-radius: 2px;
+  transition:
+    transform 0.35s var(--ease-standard),
+    opacity 0.25s var(--ease-standard),
+    background-color 0.35s var(--ease-standard);
 }
 
-/* ---------- MOBILE MENU BEHAVIOR ---------- */
+/* Animate the bars when active (X icon effect) */
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(8.5px) rotate(45deg);
+}
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(-8.5px) rotate(-45deg);
+}
+
+/* ---------- MOBILE MENU (Smooth slide-in + blur effect) ---------- */
 @media (max-width: 768px) {
   .menu-toggle {
     display: flex;
+    z-index: 11;
   }
 
   .nav-links {
     position: absolute;
     top: 64px;
     right: 0;
-    background: #fff;
     flex-direction: column;
-    width: 200px;
-    border-left: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    padding: 1rem;
+    align-items: flex-start;
     gap: 1rem;
-    display: none;
+    width: 220px;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px) saturate(150%);
+    border-left: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 0 12px;
+
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition:
+      opacity 0.4s var(--ease-standard),
+      transform 0.4s var(--ease-standard);
   }
+
+  .nav-links.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .nav-links li a {
+    color: var(--Primary-Brand);
+    font-weight: 600;
+    width: 100%;
+    display: block;
+    padding: 0.4rem 0;
+    transition: color 0.3s var(--ease-standard);
+  }
+
+  .nav-links li a:hover {
+    color: var(--Secondary-Brand);
+  }
+}
+
 /* ========== Footer Email Section ========== */
 
 /* Common footer style adjustments */
