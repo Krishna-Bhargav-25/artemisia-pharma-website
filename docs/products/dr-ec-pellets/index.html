@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EC/DR Pellets - Artemisia Pharma</title>
-  <link rel="stylesheet" href="/artemisia-pharma-website/styles.css?v=a1436a6dcecd107d9c3aedaf2c21f5215be7fe5b" />
+  <link rel="stylesheet" href="/artemisia-pharma-website/styles.css?v=017f696de22892176bcef44ac4c6da97f95132ad" />
 </head>
 <body>
   <div id="bg-asmr" aria-hidden="true"><canvas id="bg-asmr-canvas"></canvas></div>
   <header>
     <nav class="container">
       <a class="brand" href="/artemisia-pharma-website/">
-        <img src="/artemisia-pharma-website/logo.svg?v=a1436a6dcecd107d9c3aedaf2c21f5215be7fe5b" alt="Artemisia Pharma logo" />
+        <img src="/artemisia-pharma-website/logo.svg?v=017f696de22892176bcef44ac4c6da97f95132ad" alt="Artemisia Pharma logo" />
       </a>
       <ul>
         <li><a href="/artemisia-pharma-website/about/">About</a></li>
@@ -67,12 +67,44 @@
 
 
 </section>
-  </main>
-  <footer>
-    <div class="container">© <span id="year"></span> Artemisia Pharma. All rights reserved.</div>
-  </footer>
-  <script>document.getElementById('year').textContent = new Date().getFullYear()</script>
-  <script src="/artemisia-pharma-website/app.js?v=a1436a6dcecd107d9c3aedaf2c21f5215be7fe5b" defer></script>
+</main>
+<footer>
+  <div class="container">
+    © <span id="year"></span> Artemisia Pharma. All rights reserved. |
+    <a href="mailto:corporate.artemisia@arpharmalifelines.com?subject=Inquiry%20from%20Artemisia%20Pharma%20Website" class="email-link">
+      Email us
+    </a>
+  </div>
+
+<div class="footer-email-cta reveal">
+  <a id="email-link" class="email-link">
+    <span class="icon">📧</span>
+    <strong>Email Us:</strong>
+    <span id="email-text" class="email-text"></span>
+  </a>
+</div>
+</footer>
+
+<script>
+  // Obfuscated email render
+  window.addEventListener("load", () => {
+    const user = "corporate.artemisia";
+    const domain = "arpharmalifelines.com";
+    const email = `${user}@${domain}`;
+    const link = document.getElementById("email-link");
+    const text = document.getElementById("email-text");
+    if (link && text) {
+      text.textContent = email;
+      link.href = `mailto:${email}`;
+    }
+  });
+
+  // Year auto-update
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+<script src="/artemisia-pharma-website/app.js?v=017f696de22892176bcef44ac4c6da97f95132ad" defer></script>
 </body>
 </html>
+
 
