@@ -4,6 +4,7 @@
   - Rewrites absolute links/assets to include the Project Pages base path
   - Optionally wires contact form to an external endpoint via FORM_ENDPOINT env var
 */
+
 const fs = require('fs');
 const fsp = require('fs/promises');
 const path = require('path');
@@ -24,6 +25,7 @@ const VERSION = process.env.BUILD_VERSION || String(Date.now());
 // Load product data from Excel files
 const categories = getCategories();
 
+// ✅ Added new Combinations page
 const pages = [
   { view: 'index', out: 'index.html', data: { title: 'Artemisia Pharma' } },
   { view: 'about', out: 'about/index.html', data: { title: 'About Us - Artemisia Pharma' } },
@@ -32,6 +34,10 @@ const pages = [
   { view: 'products/sr-cr-pr-pellets', out: 'products/sr-cr-pr-pellets/index.html', data: { title: 'SR/CR/PR Pellets - Artemisia Pharma', products: loadProductData('sr-cr-pr-pellets') } },
   { view: 'products/dr-ec-pellets', out: 'products/dr-ec-pellets/index.html', data: { title: 'EC/DR Pellets - Artemisia Pharma', products: loadProductData('dr-ec-pellets') } },
   { view: 'products/granules', out: 'products/granules/index.html', data: { title: 'Granules - Artemisia Pharma', products: loadProductData('granules') } },
+
+  // ✅ New Combinations category prerender
+  { view: 'products/combinations', out: 'products/combinations/index.html', data: { title: 'Combinations - Artemisia Pharma', products: loadProductData('combinations') } },
+
   { view: 'products/inert-core-pellets', out: 'products/inert-core-pellets/index.html', data: { title: 'Inert Core Pellets - Artemisia Pharma', products: loadProductData('inert-core-pellets') } },
   { view: 'contact', out: 'contact/index.html', data: { title: 'Contact Us - Artemisia Pharma', sent: null, error: null } },
 ];
@@ -51,15 +57,23 @@ function rewriteForPages(html) {
     .replace(/href=\"\/products\/sr-cr-pr-pellets\"/g, `href=\"${basePath}/products/sr-cr-pr-pellets/\"`)
     .replace(/href=\"\/products\/dr-ec-pellets\"/g, `href=\"${basePath}/products/dr-ec-pellets/\"`)
     .replace(/href=\"\/products\/granules\"/g, `href=\"${basePath}/products/granules/\"`)
+    // ✅ Add rewrite rule for Combinations
+    .replace(/href=\"\/products\/combinations\"/g, `href=\"${basePath}/products/combinations/\"`)
     .replace(/href=\"\/products\/inert-core-pellets\"/g, `href=\"${basePath}/products/inert-core-pellets/\"`)
     .replace(/href=\"\/contact\"/g, `href=\"${basePath}/contact/\"`);
 
-  // Contact form wiring: if no external endpoint, disable the form gracefully
+  // Contact form wiring
   if (FORM_ENDPOINT) {
-    out = out.replace(/<form([^>]*?)method=\"POST\"([^>]*?)action=\"[^\"]*\"/i, `<form$1method=\"POST\"$2action=\"${FORM_ENDPOINT}\"`);
+    out = out.replace(
+      /<form([^>]*?)method=\"POST\"([^>]*?)action=\"[^\"]*\"/i,
+      `<form$1method=\"POST\"$2action=\"${FORM_ENDPOINT}\"`
+    );
   } else {
-    // Remove action and prevent submit
-    out = out.replace(/<form([^>]*?)method=\"POST\"([^>]*?)action=\"[^\"]*\"/i, `<form$1method=\"POST\"$2action=\"#\" onsubmit=\"alert('This form is disabled on the static site.'); return false;\"`);
+    // Disable static form
+    out = out.replace(
+      /<form([^>]*?)method=\"POST\"([^>]*?)action=\"[^\"]*\"/i,
+      `<form$1method=\"POST\"$2action=\"#\" onsubmit=\"alert('This form is disabled on the static site.'); return false;\"`
+    );
   }
 
   return out;
@@ -89,21 +103,24 @@ async function copyDir(src, dest) {
     const outPath = path.join(distDir, p.out);
     await fsp.mkdir(path.dirname(outPath), { recursive: true });
     const file = path.join(viewsDir, `${p.view}.ejs`);
-    // Render synchronously to support classic EJS includes without `await`
     const html = await ejs.renderFile(file, p.data, {
-      views: viewsDir,
+      views: [viewsDir],
       filename: file,
-      views: [viewsDir], // ensures includes resolve from /views
-      });
+    });
     const rewritten = rewriteForPages(html);
     await fsp.writeFile(outPath, rewritten, 'utf8');
   }
+
   // Publish to docs/ for GitHub Pages
   await fsp.rm(docsDir, { force: true, recursive: true });
   await fsp.mkdir(docsDir, { recursive: true });
   await copyDir(distDir, docsDir);
   await fsp.writeFile(path.join(docsDir, '.nojekyll'), '');
-  const redirectHtml = `<!doctype html>\n<meta charset="utf-8">\n<title>Redirecting…</title>\n<meta http-equiv="refresh" content="0; url=${basePath}/">\n<script>location.replace('${basePath}/');</script>`;
+  const redirectHtml = `<!doctype html>
+<meta charset="utf-8">
+<title>Redirecting…</title>
+<meta http-equiv="refresh" content="0; url=${basePath}/">
+<script>location.replace('${basePath}/');</script>`;
   await fsp.writeFile(path.join(docsDir, '404.html'), redirectHtml, 'utf8');
-  console.log('Static site generated in docs/');
+  console.log('✅ Static site generated in docs/ including Combinations page.');
 })();
