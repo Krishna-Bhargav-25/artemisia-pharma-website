@@ -12,6 +12,7 @@ const PRODUCT_FILES = {
   'sr-cr-pr-pellets': 'SR,CR,PR Pellets.xlsx',
   'dr-ec-pellets': 'EC,DR Pellets.xlsx',
   'granules': 'Granules.xlsx',
+  'combinations': 'Combinations.xlsx',
   'inert-core-pellets': 'Inert Core Pellets.xlsx'
 };
 
@@ -82,6 +83,12 @@ function getCategories() {
       title: 'Granules',
       description: 'High-quality pharmaceutical granules',
       route: '/products/granules'
+    },
+      {
+      key: 'combinations',
+      title: 'Combinations',
+      description: 'Custom multi-layered pellet and granule formulations, blends and therapeutic combinations',
+      route: '/products/combinations'
     },
     {
       key: 'inert-core-pellets',
