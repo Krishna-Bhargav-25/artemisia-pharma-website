@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Artemisia Pharma</title>
-  <link rel="stylesheet" href="/artemisia-pharma-website/styles.css?v=f767dfa1769a939f1d6fdd988efa74a1756d5152" />
+  <title>Artemisia Pharma Lifelines | Global Supplier of Pharmaceutical Pellets, Granules &amp; Formulations</title>
+  <link rel="stylesheet" href="/artemisia-pharma-website/styles.css?v=75d58631c67786c7b6a834d8993f0fd9951579c6" />
 </head>
 <body>
   <div id="bg-asmr" aria-hidden="true"><canvas id="bg-asmr-canvas"></canvas></div>
@@ -12,7 +12,156 @@
   <header>
     <nav class="container">
       <a class="brand" href="/artemisia-pharma-website/">
-        <img src="/artemisia-pharma-website/logo.svg?v=f767dfa1769a939f1d6fdd988efa74a1756d5152" alt="Artemisia Pharma logo" class="logo" />
+        <img src="/artemisia-pharma-website/logo.svg?v=75d58631c67786c7b6a834d8993f0fd9951579c6" alt="Artemisia Pharma logo" class="logo" />
+      </a>
+
+      <!-- Hamburger Menu (visible only on mobile) -->
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links">
+        <li><a href="/artemisia-pharma-website/about/">About</a></li>
+        <li><a href="/artemisia-pharma-website/products/">Products</a></li>
+        <li><a href="/artemisia-pharma-website/contact/">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="page" class="container">
+
+
+<section class="hero reveal in-view">
+  <div class="container">
+    <div class="ambient-glow" aria-hidden="true"></div>
+    <h1>Trusted Global Partner for Pharmaceutical Pellets, Granules & Formulations</h1>
+    <p>
+      <strong>Artemisia Pharma Lifelines Pvt. Ltd.</strong> is a specialized <em>pharmaceutical trading company</em> based in India, connecting 
+      <strong>WHO-GMP and GMP-certified manufacturers</strong> with pharmaceutical companies across the globe.  
+      We deliver consistent quality, regulatory compliance, and supply assurance for pellets, granules, and advanced formulations.
+    </p>
+    <p>
+      With over <strong>20 years of proven expertise</strong> in the pharma sector, we serve as your strategic sourcing partner—bridging 
+      the gap between world-class manufacturing and your global distribution needs.
+    </p>
+    <div class="cta-buttons" style="margin-top:16px">
+      <a href="/artemisia-pharma-website/products/" class="btn primary"><button class="cta">Explore Products</button></a>
+      <a href="/artemisia-pharma-website/contact/" class="btn secondary" style="margin-left:8px"><button>Contact Us</button></a>
+    </div>
+  </div>
+</section>
+
+<section class="reveal categories">
+  <div class="container">
+    <h2>Our Pharmaceutical Product Portfolio</h2>
+    <p>
+      We specialize in trading high-quality <strong>pharmaceutical pellets</strong>, <strong>granules</strong>, and <strong>multiparticulate systems</strong>
+      sourced from certified manufacturing partners. Each product meets global standards of purity, uniformity, and dissolution control.
+    </p>
+    <div class="grid cols-4" style="margin-top:20px">
+      <a class="card" href="/artemisia-pharma-website/products/ir-pellets/">
+        <h3>IR Pellets</h3>
+        <p>Immediate-Release pellets for rapid therapeutic action.</p>
+      </a>
+      <a class="card" href="/artemisia-pharma-website/products/sr-cr-pr-pellets/">
+        <h3>SR / CR / PR Pellets</h3>
+        <p>Sustained, Controlled & Prolonged-Release pellets for extended dosing.</p>
+      </a>
+      <a class="card" href="/artemisia-pharma-website/products/dr-ec-pellets/">
+        <h3>EC / DR Pellets</h3>
+        <p>Enteric-Coated & Delayed-Release pellets for pH-specific release.</p>
+      </a>
+      <a class="card" href="/artemisia-pharma-website/products/granules/">
+        <h3>Granules</h3>
+        <p>High-purity granules suitable for tableting or capsule filling.</p>
+      </a>
+      <a class="card" href="/artemisia-pharma-website/products/inert-core-pellets/">
+        <h3>Inert Core Pellets</h3>
+        <p>Neutral starter cores ideal for API layering and coating applications.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="reveal strengths">
+  <div class="container">
+    <h2>Why Partner with Artemisia Pharma Lifelines</h2>
+    <ul class="benefits">
+      <li><strong>WHO-GMP certified manufacturing partners</strong> ensuring regulatory-grade quality.</li>
+      <li><strong>Two decades of domain expertise</strong> in pharma supply chain management.</li>
+      <li><strong>Proven zero-complaint history</strong> from legacy operations under AR Pharma Hyderabad.</li>
+      <li><strong>Transparent sourcing and documentation</strong> for global regulatory submissions.</li>
+      <li><strong>Ongoing investment</strong> in a state-of-the-art manufacturing facility to strengthen in-house capacity.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="cta-section reveal">
+  <div class="container">
+    <h2>Your Reliable Pharma Sourcing Partner</h2>
+    <p>
+      Whether you need <strong>pharma pellets suppliers</strong> or <strong>custom formulations</strong>, 
+      Artemisia Pharma Lifelines ensures you get certified quality, timely delivery, and unmatched reliability.
+    </p>
+    <a href="/artemisia-pharma-website/contact/"><button class="cta">Request a Quote</button></a>
+  </div>
+</section>
+
+</main>
+<footer>
+  <div class="container">
+    © <span id="year"></span> Artemisia Pharma. All rights reserved.
+  </div>
+
+<div class="footer-email-cta reveal">
+  <a id="email-link" class="email-link">
+    <span class="icon">📧</span>
+    <strong>Email Us:</strong>
+    <span id="email-text" class="email-text"></span>
+  </a>
+</div>
+</footer>
+
+<script>
+  // Obfuscated email render
+  window.addEventListener("load", () => {
+    const user = "corporate.artemisia";
+    const domain = "arpharmalifelines.com";
+    const email = `${user}@${domain}`;
+    const link = document.getElementById("email-link");
+    const text = document.getElementById("email-text");
+    if (link && text) {
+      text.textContent = email;
+      link.href = `mailto:${email}`;
+    }
+  });
+
+  // Year auto-update
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+<script src="/artemisia-pharma-website/app.js?v=75d58631c67786c7b6a834d8993f0fd9951579c6" defer></script>
+</body>
+</html>
+
+
+/* <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artemisia Pharma</title>
+  <link rel="stylesheet" href="/artemisia-pharma-website/styles.css?v=75d58631c67786c7b6a834d8993f0fd9951579c6" />
+</head>
+<body>
+  <div id="bg-asmr" aria-hidden="true"><canvas id="bg-asmr-canvas"></canvas></div>
+
+  <header>
+    <nav class="container">
+      <a class="brand" href="/artemisia-pharma-website/">
+        <img src="/artemisia-pharma-website/logo.svg?v=75d58631c67786c7b6a834d8993f0fd9951579c6" alt="Artemisia Pharma logo" class="logo" />
       </a>
 
       <!-- Hamburger Menu (visible only on mobile) -->
@@ -88,8 +237,9 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
-<script src="/artemisia-pharma-website/app.js?v=f767dfa1769a939f1d6fdd988efa74a1756d5152" defer></script>
+<script src="/artemisia-pharma-website/app.js?v=75d58631c67786c7b6a834d8993f0fd9951579c6" defer></script>
 </body>
 </html>
 
 
+*/
