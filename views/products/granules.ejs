@@ -1,7 +1,38 @@
-<%- include('../partials/header', { title }) %>
+<%- include('../partials/header', { 
+  title: 'Pharmaceutical Granules – Artemisia Pharma Lifelines',
+  meta: {
+    description: 'High-quality pharmaceutical granules for formulation development and large-scale production. Trusted global supplier for direct compression, wet and dry granulation materials.',
+    keywords: 'pharmaceutical granules, pharma granules supplier, granulation materials, direct compression granules, formulation excipients, Artemisia Pharma Lifelines',
+    ogTitle: 'Pharmaceutical Granules | Artemisia Pharma Lifelines',
+    ogDescription: 'Premium granules for pharmaceutical manufacturing and formulation support. Reliable sourcing and WHO-GMP quality assurance.',
+    ogImage: '/images/og-granules.jpg',
+    ogUrl: 'https://www.arpharmalifelines.com/products/granules'
+  }
+}) %>
+
 <section class="reveal">
-  <h1>Granules</h1>
-  <p class="muted">High-quality pharmaceutical granules for various formulations.</p>
+  <h1>Pharmaceutical Granules</h1>
+  <p class="muted">
+    <strong>Artemisia Pharma Lifelines</strong> offers a wide range of <strong>pharmaceutical-grade granules</strong> designed for 
+    diverse drug delivery systems and formulation types. Our products are developed in collaboration with <strong>WHO-GMP certified manufacturers</strong>
+    to ensure optimal flow, compressibility, and uniformity for consistent tablet and capsule performance.
+  </p>
+
   <%- include('../partials/product-table', { products }) %>
+
+  <div style="margin-top: 24px;">
+    <h2>Why Choose Our Granules?</h2>
+    <ul>
+      <li>✅ Excellent flow properties for smooth processing and uniform filling.</li>
+      <li>✅ Customizable particle size distribution for precise formulation control.</li>
+      <li>✅ Compatible with both <strong>wet granulation</strong> and <strong>dry granulation</strong> techniques.</li>
+      <li>✅ WHO-GMP sourced and fully documented for regulatory compliance.</li>
+    </ul>
+  </div>
+
+  <p style="margin-top: 24px;">
+    <em>Available in multiple grades suitable for direct compression, encapsulation, and further coating applications.</em>
+  </p>
 </section>
+
 <%- include('../partials/footer') %>
