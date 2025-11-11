@@ -1,14 +1,50 @@
-<%- include('../partials/header', { title }) %>
+<%- include('../partials/header', { 
+  title: 'Pharmaceutical Pellets & Granules | Artemisia Pharma Lifelines',
+  meta: {
+    description: 'Explore Artemisia Pharma’s full range of pharmaceutical pellets and granules — including IR, SR, CR, PR, EC/DR, and Inert Core Pellets — sourced from WHO-GMP compliant manufacturers for global supply.',
+    keywords: 'pharmaceutical pellets, pharma granules, WHO-GMP pellets supplier, controlled release pellets, enteric coated pellets, inert core pellets, pellet exporters India, pharma intermediates trader',
+    ogTitle: 'Pharmaceutical Pellets & Granules | Artemisia Pharma Lifelines',
+    ogDescription: 'Trusted global supplier of pharmaceutical pellets and granules for oral dosage formulations, backed by WHO-GMP compliant sourcing.',
+    ogImage: '/images/og-products.jpg',
+    ogUrl: 'https://www.arpharmalifelines.com/products'
+  }
+}) %>
+
 <section class="reveal">
-  <h1>Products</h1>
-  <p class="muted">Explore our pellets and granules offerings. Select a category to view details.</p>
-  <div class="grid cols-4" style="margin-top:16px">
-    <% categories.forEach(category => { %>
-      <a class="card" href="<%= category.route %>">
-        <h3><%= category.title %></h3>
-        <p><%= category.description %></p>
-      </a>
-    <% }) %>
+  <div class="container">
+    <h1>Pharmaceutical Pellets & Granules</h1>
+    <p class="lead">
+      Artemisia Pharma Lifelines Pvt. Ltd. offers a comprehensive portfolio of 
+      <strong>pharmaceutical pellets and granules</strong> used in the formulation of 
+      solid oral dosage forms. Each product category is sourced from 
+      <strong>WHO-GMP and GMP certified manufacturing partners</strong>, ensuring 
+      compliance, consistency, and world-class quality.
+    </p>
+
+    <h2 style="margin-top:24px;">💊 Product Categories</h2>
+    <p>Browse our range of specialized categories to find the right pharmaceutical intermediates for your formulations:</p>
+
+    <div class="grid cols-4" style="margin-top:20px;">
+      <% categories.forEach(category => { %>
+        <a class="card" href="<%= category.route %>">
+          <h3><%= category.title %></h3>
+          <p><%= category.description %></p>
+        </a>
+      <% }) %>
+    </div>
+
+    <h2 style="margin-top:40px;">🌍 Why Choose Artemisia Pharma Lifelines?</h2>
+    <ul>
+      <li><strong>Specialized Focus:</strong> Exclusive expertise in pharmaceutical pellets, granules, and formulations.</li>
+      <li><strong>Regulatory Assurance:</strong> Sourced only from <strong>WHO-GMP / GMP compliant facilities</strong>.</li>
+      <li><strong>Trusted by Industry Leaders:</strong> Proven legacy in pharma intermediates supply to global brands.</li>
+      <li><strong>End-to-End Quality:</strong> Every batch comes with full COA, MSDS, and technical data documentation.</li>
+    </ul>
+
+    <p style="margin-top:32px;">
+      <a href="/contact"><button class="cta">Request Product Catalogue</button></a>
+    </p>
   </div>
 </section>
-<%- include('partials/footer') %>
+
+<%- include('../partials/footer') %>
