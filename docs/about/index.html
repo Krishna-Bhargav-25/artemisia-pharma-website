@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Us - Artemisia Pharma</title>
-  <link rel="stylesheet" href="/artemisia-pharma-website/styles.css?v=75d58631c67786c7b6a834d8993f0fd9951579c6" />
+  <title>About Artemisia Pharma Lifelines | Trusted Pharma Trading Partner with WHO-GMP Network</title>
+  <link rel="stylesheet" href="/artemisia-pharma-website/styles.css?v=163a58c5c7500023237f5943af83656c9c956df9" />
 </head>
 <body>
   <div id="bg-asmr" aria-hidden="true"><canvas id="bg-asmr-canvas"></canvas></div>
@@ -12,7 +12,134 @@
   <header>
     <nav class="container">
       <a class="brand" href="/artemisia-pharma-website/">
-        <img src="/artemisia-pharma-website/logo.svg?v=75d58631c67786c7b6a834d8993f0fd9951579c6" alt="Artemisia Pharma logo" class="logo" />
+        <img src="/artemisia-pharma-website/logo.svg?v=163a58c5c7500023237f5943af83656c9c956df9" alt="Artemisia Pharma logo" class="logo" />
+      </a>
+
+      <!-- Hamburger Menu (visible only on mobile) -->
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links">
+        <li><a href="/artemisia-pharma-website/about/">About</a></li>
+        <li><a href="/artemisia-pharma-website/products/">Products</a></li>
+        <li><a href="/artemisia-pharma-website/contact/">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="page" class="container">
+
+
+<section class="about reveal">
+  <h1>About Artemisia Pharma Lifelines</h1>
+  <p class="lead">
+    <strong>Artemisia Pharma Lifelines Pvt. Ltd.</strong> is a global <em>pharmaceutical trading and sourcing partner</em> 
+    specializing in <strong>pellets, granules, and formulations</strong>.  
+    Backed by over <strong>two decades of operational excellence</strong> in the Indian and international pharmaceutical markets, 
+    we deliver consistent, compliant, and dependable supply chain solutions.
+  </p>
+
+  <h2>Our Legacy: Two Decades of Trust & Precision</h2>
+  <p>
+    Our journey began in 2002 under the respected brand <strong>AR Pharma Hyderabad</strong>, where we built a flawless reputation 
+    supplying critical pharmaceutical pellets to industry leaders such as <strong>Dr. Reddy’s Laboratories</strong> and 
+    numerous global clients—without a single complaint or quality deviation.  
+    That same legacy of zero-defect performance now defines <strong>Artemisia Pharma Lifelines</strong>.
+  </p>
+
+  <h2>Global Trading Expertise</h2>
+  <p>
+    Operating as an independent international trading house, we specialize in connecting pharma manufacturers, distributors, and R&D firms 
+    with <strong>WHO-GMP and GMP-certified production partners</strong>.  
+    Our role is to simplify sourcing—ensuring quality, regulatory readiness, and seamless logistics across borders.
+  </p>
+
+  <table class="table">
+    <thead>
+      <tr><th>Our Strength</th><th>What It Means for You</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Specialized Focus</strong></td>
+        <td>Exclusive expertise in pharmaceutical pellets, granules, and formulations—precision trading, not general supply.</td>
+      </tr>
+      <tr>
+        <td><strong>Global Compliance</strong></td>
+        <td>End-to-end sourcing aligned with international regulatory frameworks and pharmacopoeial standards.</td>
+      </tr>
+      <tr>
+        <td><strong>Future-Ready Infrastructure</strong></td>
+        <td>Our upcoming <strong>state-of-the-art manufacturing facility</strong> will enhance quality assurance and in-house capacity.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Our Commitment: Quality that Supports Life</h2>
+  <p>
+    Every batch we handle is destined to support human health.  
+    We uphold the highest standards in product selection, partner audits, and logistics to ensure <strong>uninterrupted, quality-driven supply chains</strong>.
+  </p>
+
+  <p><strong>When you partner with Artemisia Pharma Lifelines, you’re securing reliability, compliance, and confidence—every time.</strong></p>
+</section>
+
+</main>
+<footer>
+  <div class="container">
+    © <span id="year"></span> Artemisia Pharma. All rights reserved.
+  </div>
+
+<div class="footer-email-cta reveal">
+  <a id="email-link" class="email-link">
+    <span class="icon">📧</span>
+    <strong>Email Us:</strong>
+    <span id="email-text" class="email-text"></span>
+  </a>
+</div>
+</footer>
+
+<script>
+  // Obfuscated email render
+  window.addEventListener("load", () => {
+    const user = "corporate.artemisia";
+    const domain = "arpharmalifelines.com";
+    const email = `${user}@${domain}`;
+    const link = document.getElementById("email-link");
+    const text = document.getElementById("email-text");
+    if (link && text) {
+      text.textContent = email;
+      link.href = `mailto:${email}`;
+    }
+  });
+
+  // Year auto-update
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+<script src="/artemisia-pharma-website/app.js?v=163a58c5c7500023237f5943af83656c9c956df9" defer></script>
+</body>
+</html>
+
+
+/*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us - Artemisia Pharma</title>
+  <link rel="stylesheet" href="/artemisia-pharma-website/styles.css?v=163a58c5c7500023237f5943af83656c9c956df9" />
+</head>
+<body>
+  <div id="bg-asmr" aria-hidden="true"><canvas id="bg-asmr-canvas"></canvas></div>
+
+  <header>
+    <nav class="container">
+      <a class="brand" href="/artemisia-pharma-website/">
+        <img src="/artemisia-pharma-website/logo.svg?v=163a58c5c7500023237f5943af83656c9c956df9" alt="Artemisia Pharma logo" class="logo" />
       </a>
 
       <!-- Hamburger Menu (visible only on mobile) -->
@@ -102,8 +229,9 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
-<script src="/artemisia-pharma-website/app.js?v=75d58631c67786c7b6a834d8993f0fd9951579c6" defer></script>
+<script src="/artemisia-pharma-website/app.js?v=163a58c5c7500023237f5943af83656c9c956df9" defer></script>
 </body>
 </html>
 
 
+*/
