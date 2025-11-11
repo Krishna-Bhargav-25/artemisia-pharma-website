@@ -10,7 +10,7 @@ const dataDir = path.join(__dirname, '..', 'data');
 const PRODUCT_FILES = {
   'ir-pellets': 'IR Pellets.xlsx',
   'sr-cr-pr-pellets': 'SR,CR,PR Pellets.xlsx',
-  'dr-ec-pellets': 'EC,DR Pellets.xlsx',
+  'ec-dr-pellets': 'EC,DR Pellets.xlsx',
   'granules': 'Granules.xlsx',
   'combinations': 'Combinations.xlsx',
   'inert-core-pellets': 'Inert Core Pellets.xlsx'
@@ -73,7 +73,7 @@ function getCategories() {
       route: '/products/sr-cr-pr-pellets'
     },
     {
-      key: 'dr-ec-pellets',
+      key: 'ec-dr-pellets',
       title: 'EC/DR Pellets',
       description: 'Enteric-Coated/Delayed Release',
       route: '/products/dr-ec-pellets'
